@@ -57,13 +57,18 @@ public class RestTemplatePostApiExamples {
     RestTemplate restTemplate = new RestTemplate();
 
     URI uri = new URI("http://localhost:"+randomServerPort+"/employees/");
+
     Employee employee = new Employee("Adam", "Gilly", "test@email.com");
 
     HttpHeaders headers = new HttpHeaders();
+
     headers.set("X-COM-LOCATION", "USA");
+
     HttpEntity<Employee> request = new HttpEntity<>(employee, headers);
 
+
     ResponseEntity<String> result = restTemplate.postForEntity(uri, request, String.class);
+
 
     Assertions.assertEquals(400, result.getStatusCodeValue());
   }
